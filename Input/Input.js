@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native'
 
-const Input = () => {
+const Input = (props) => {
     const [text, onChangeText] = React.useState('');
     return (
         <View>
-            <Text>Escriba su usuario:</Text>
+            <Text>{props.nombreLabel}:</Text>
             <TextInput
-                style={[styles.input, styles.shadowProp]}
+                style={[styles.input]}
                 onChangeText={onChangeText}
                 value={text}
                 placeholder="Usuario"
@@ -16,6 +16,11 @@ const Input = () => {
     )
 };
 const styles = StyleSheet.create({
+    input: {
+        borderColor: 'blue',
+        borderWidth: '50',
+        backgroundColor: 'pink',
+    }
 
   });
 export default Input;
