@@ -2,24 +2,23 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native'
 
 const Input = (props) => {
-    const [text, onChangeText] = React.useState('');
+    
     return (
         <View>
             <Text>{props.nombreLabel}:</Text>
             <TextInput
                 style={[styles.input]}
-                onChangeText={onChangeText}
-                value={text}
-                placeholder="Usuario"
+                onChangeText={props.setText}
+                value={props.text}
             />
         </View>
     )
 };
 const styles = StyleSheet.create({
     input: {
-        borderColor: 'blue',
+        borderColor: '#1573ff',
         borderWidth: '50',
-        backgroundColor: 'pink',
+        backgroundColor: '#d9d9d9'
     }
 
   });
