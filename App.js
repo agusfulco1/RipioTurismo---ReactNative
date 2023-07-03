@@ -10,32 +10,32 @@ function Login(props) {
   const [validation, setValidation] = React.useState();
   const [textName, onChangeTextName] = React.useState('');
   const onPress = () => {
+    setValidation(false);
     axios.get("http://localhost:3000/users")
     .then(function (response) {
-      setValidation(false);
       const usuariosArr = response.data
       validar(usuariosArr)
-      if (validation) {
-        props.navigation.navigate('Tu Cronograma');
-      }
     })
+  }
   const validar = usuariosArr => {
-    var i = 0
-    while (validation === false || i < usuariosArr.length ) {
+    console.log("hola")
       usuariosArr.forEach(element => {
+        console.log(element)
         if (element.NombreCompleto === textName && element.NumPasaporte === textNumber ) {
           setValidation(true)
         }
-        i = i + 1
-      });
+    });  
+  }
+  React.useEffect( () => {
+    if (validation) {
+      props.navigation.navigate('Tu Cronograma')
     }
-  }
-  }
+  }, [validation])
   return (
     <View style={styles.container}>
       <Input nombreLabel="Nombre Completo" text={textName} setText={onChangeTextName}></Input>
       <Input nombreLabel="N° Pasaporte" text={textNumber} setText={onChangeTextNumber}></Input>
-      { validation ? <Text>Error</Text> : null}
+      { validation ? null : <Text>Error</Text>}
       <Button
         title='Iniciar Sesion'
         onPress={onPress}
