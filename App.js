@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {StyleSheet, View, Button, Text} from 'react-native';
 import Input from "./Input/Input.js"
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,6 +9,7 @@ function Login(props) {
   const [textNumber, onChangeTextNumber] = React.useState('');
   const [validation, setValidation] = React.useState();
   const [textName, onChangeTextName] = React.useState('');
+
   const onPress = () => {
     setValidation(false);
     axios.get("http://localhost:3000/users")
@@ -35,7 +36,7 @@ function Login(props) {
     <View style={styles.container}>
       <Input nombreLabel="Nombre Completo" text={textName} setText={onChangeTextName}></Input>
       <Input nombreLabel="N° Pasaporte" text={textNumber} setText={onChangeTextNumber}></Input>
-      { validation ? null : <Text>Error</Text>}
+      { validation ? <Text>Hola</Text> : <Text>Error</Text>}
       <Button
         title='Iniciar Sesion'
         onPress={onPress}
@@ -45,9 +46,39 @@ function Login(props) {
 }
 
 function Itinerario() {
+  const [actividades, setActividades] = React.useState()
+  const [loading, setLoading] = React.useState(false)
+  React.useEffect(() => {
+    axios.get('http://localhost:3000/activities')
+    .then(function (response) {
+      setActividades(response.data)
+    })
+    .finally(() => setLoading(true))
+  }, [])
   return (
     <View>
-      <Text>Hola</Text>
+      {!loading ? (
+        <Text>Loading...</Text>
+      ) : (
+        actividades.map((obj) => {
+          return (
+            <View key={obj.idActividad}>
+              <Text>{obj.Nombre}<Text>{obj.Duracion}</Text></Text>
+              
+              {actividades.map((obj2) => {
+                return (
+                  <View key={obj2.idActividad}>
+                    <Text>{obj2.Descripcion}</Text>
+
+                  </View>
+                )
+              })}
+            </View>
+          );
+          
+        })
+      )} 
+
     </View>
   );
 }
@@ -59,7 +90,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Tu Cronograma" component={Itinerario} style={styles.navbar}/>
+        <Stack.Screen name="Tu Cronograma" component={Itinerario}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -72,7 +103,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'start',
   },
-  navbar: {
-    
-  }
 });
