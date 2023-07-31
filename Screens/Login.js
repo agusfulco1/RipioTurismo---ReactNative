@@ -35,6 +35,7 @@ export default function Login(props) {
     }
     React.useEffect( () => {
       if (validation) {
+        setLoading(true)
         props.navigation.navigate('Tu Cronograma', {NumPasaporte: NumPasaporte})
       }
     }, [isLoading])
@@ -55,15 +56,11 @@ export default function Login(props) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#EEEEEE',
+      backgroundColor: '#f2f2f2',
       alignItems: 'center',
       width: windowWidth,
       height: windowHeight,
       justifyContent: 'center'
-    },
-    boton: {
-      borderRadius: 200,
-      backgroundColor: 'red'
     },
     texto: {
       color: '#F72323'
