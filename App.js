@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Screens/Login'
 import Itinerario from './Screens/Itinerario'
-
-
-
 
 export default function App() {
   const Stack = createNativeStackNavigator();

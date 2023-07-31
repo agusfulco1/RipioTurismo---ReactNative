@@ -1,21 +1,27 @@
 import React, { useEffect } from 'react';
-import {StyleSheet, View, Button, Text} from 'react-native';
-import Input from "../Input/Input.js"
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import Input from "../Components/Input.js"
+import { Dimensions } from 'react-native';
 import axios from 'axios';
+import Button from "../Components/Button.js"
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function Login(props) {
     const [textNumber, onChangeTextNumber] = React.useState('');
     const [validation, setValidation] = React.useState();
     const [textName, onChangeTextName] = React.useState('');
     const [NumPasaporte, setNumPasaporte] = React.useState("")
+    const [isLoading, setLoading] = React.useState(true)
     const onPress = () => {
       setValidation(false);
       axios.get("http://localhost:3000/users")
       .then(function (response) {
         const usuariosArr = response.data
         validar(usuariosArr)
-        console.log(NumPasaporte)
       })
+      .finally(() => setLoading(false))
     }
     const validar = usuariosArr => {
       console.log("hola")
@@ -31,13 +37,14 @@ export default function Login(props) {
       if (validation) {
         props.navigation.navigate('Tu Cronograma', {NumPasaporte: NumPasaporte})
       }
-    }, [validation])
+    }, [isLoading])
     return (
       <View style={styles.container}>
         <Input nombreLabel="Nombre Completo" text={textName} setText={onChangeTextName}></Input>
         <Input nombreLabel="N° Pasaporte" text={textNumber} setText={onChangeTextNumber}></Input>
-        { validation ? <Text>Hola</Text> : <Text>Error</Text>}
+        { isLoading ? null : !validation ? <Text style={styles.texto}><MaterialCommunityIcons name="alert" size={24} color="red" />Error, el nombre o el numero de pasaporte no coinciden.</Text> : null}
         <Button
+          style={styles.boton}
           title='Iniciar Sesion'
           onPress={onPress}
         />
@@ -50,6 +57,15 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#EEEEEE',
       alignItems: 'center',
-      justifyContent: 'start',
+      width: windowWidth,
+      height: windowHeight,
+      justifyContent: 'center'
     },
+    boton: {
+      borderRadius: 200,
+      backgroundColor: 'red'
+    },
+    texto: {
+      color: '#F72323'
+    }
   });
