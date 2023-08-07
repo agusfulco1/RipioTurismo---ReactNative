@@ -60,9 +60,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       width: windowWidth,
       height: windowHeight,
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     texto: {
+      marginTop: 10,
       color: '#F72323'
     }
   });

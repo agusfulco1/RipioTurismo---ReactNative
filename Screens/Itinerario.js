@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import axios from 'axios';
 import Separator from '../Components/Separator'
+import { Dimensions } from 'react-native';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 export default function Itinerario({route}) {
     const [actividades, setActividades] = React.useState()
     const [loading, setLoading] = React.useState(false)
@@ -26,7 +29,7 @@ export default function Itinerario({route}) {
             return (
               <View key={obj.idActividad}>
                 <View style={styles.Actividad}>
-                  <View style={box}> 
+                  <View style={styles.box}> 
                     <Text>{obj.Nombre}</Text>
                     <Text>{obj.Descripcion}</Text>
                   </View>
@@ -46,12 +49,13 @@ export default function Itinerario({route}) {
 const styles = StyleSheet.create({
   Actividad: {
     flexDirection: 'row',
-    width: "100%",
+    width: windowWidth,
+    height: "20%",
   },
   texto: {
     fontSize: 50,
   },
   box: {
-    width
+    width: "40%"
   }
 });

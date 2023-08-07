@@ -3,7 +3,7 @@ import AppLoading from "expo-app-loading";
 import {
     useFonts,
     Fredoka_300Light,
-  } from "@expo-google-fonts/fredoka";
+} from "@expo-google-fonts/fredoka";
 TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
 
 export default function Button(props) {
@@ -49,6 +49,7 @@ export default function Button(props) {
 
 const styles = StyleSheet.create({
     botonContainer: {
+        padding: 10,
         backgroundColor: "#1573FF",
         borderRadius: 50,
         padding: 10,
@@ -57,11 +58,11 @@ const styles = StyleSheet.create({
         outlineStyle: "solid",
         outlineWidth: 2,
         outlineOffset: 3,
-        width: 200,
-        height: 40,
+        width: 300,
+        height: 60
     },
     textoBoton: {
-        fontSize: 14,
+        fontSize: 20,
         color: "#fff",
         fontWeight: "bold",
         alignSelf: "center",

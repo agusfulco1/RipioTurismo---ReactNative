@@ -4,7 +4,9 @@ import {View, Text, TextInput, StyleSheet} from 'react-native'
 const Input = (props) => {
     return (
         <View style={[styles.container]}>
-            <Text style={styles.texto}>{props.nombreLabel}:</Text>
+            <View style={styles.box}>
+                <Text style={styles.texto}>{props.nombreLabel}:</Text>
+            </View>
             <TextInput
                 style={[styles.input]}
                 onChangeText={props.setText}
@@ -34,13 +36,18 @@ const styles = StyleSheet.create({
         shadowRadius: 10.16, 
         height: "100%",
         marginTop: 5,
+        fontSize: 25
         
     },
     texto: {
         color: "#00000080",
-        fontSize: 15,
+        fontSize: 30,
         fontWeight: 300,
     },
+    box: {
+        alignItems: 'left',
+        width: "70%"
+    }
 
   });
 export default Input;
