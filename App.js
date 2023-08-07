@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Screens/Login'
 import Itinerario from './Screens/Itinerario'
+import Bot from './Screens/Bot'
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -11,6 +12,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Tu Cronograma" component={Itinerario}/>
+        <Stack.Screen name="Chat" component={Bot}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
