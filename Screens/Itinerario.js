@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import {View, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import axios from 'axios';
+import Separator from '../Components/Separator'
 
 export default function Itinerario({route}) {
     const [actividades, setActividades] = React.useState()
@@ -24,8 +25,14 @@ export default function Itinerario({route}) {
           actividades.map((obj) => {
             return (
               <View key={obj.idActividad}>
-                <Text>{obj.Nombre}<Text> {obj.Duracion}</Text></Text>
-                <Text>{obj.Descripcion}</Text>
+                <View style={styles.Actividad}>
+                  <View style={box}> 
+                    <Text>{obj.Nombre}</Text>
+                    <Text>{obj.Descripcion}</Text>
+                  </View>
+                  <Text style={styles.texto}> Dia {obj.Duracion}</Text>
+                </View>
+                <Separator></Separator>
               </View>
             );
             
@@ -34,4 +41,17 @@ export default function Itinerario({route}) {
   
       </View>
     );
+}
+
+const styles = StyleSheet.create({
+  Actividad: {
+    flexDirection: 'row',
+    width: "100%",
+  },
+  texto: {
+    fontSize: 50,
+  },
+  box: {
+    width
   }
+});
