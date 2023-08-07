@@ -65,5 +65,5 @@ const styles = StyleSheet.create({
     texto: {
       marginTop: 10,
       color: '#F72323'
-    }
+    },
   });

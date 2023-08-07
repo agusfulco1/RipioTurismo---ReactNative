@@ -21,7 +21,7 @@ export default function Itinerario({route}) {
       .finally(() => setLoading(true))
     }, [])
     return (
-      <View>
+      <View style={styles.container}>
         {!loading ? (
           <Text>Loading...</Text>
         ) : (
@@ -29,14 +29,17 @@ export default function Itinerario({route}) {
             return (
               <View key={obj.idActividad}>
                 <View style={styles.Actividad}>
-                  <View style={styles.box}> 
-                    <Text>{obj.Nombre}</Text>
-                    <Text>{obj.Descripcion}</Text>
+                  <View style={styles.containerActividad}> 
+                    <View style={styles.box}> 
+                      <Text>{obj.Nombre}</Text>
+                      <Text>{obj.Descripcion}</Text>
+                    </View>
+                    <Text style={styles.texto}> Dia {obj.Duracion}</Text>
                   </View>
-                  <Text style={styles.texto}> Dia {obj.Duracion}</Text>
+                  <Separator></Separator>  
                 </View>
-                <Separator></Separator>
               </View>
+             
             );
             
           })
@@ -47,15 +50,21 @@ export default function Itinerario({route}) {
 }
 
 const styles = StyleSheet.create({
-  Actividad: {
-    flexDirection: 'row',
+  container: {
     width: windowWidth,
+    height: windowHeight,
+  },
+  Actividad: {
+    width: "100%",
     height: "20%",
   },
   texto: {
     fontSize: 50,
   },
   box: {
-    width: "40%"
+    width: "20%"
+  },
+  containerActividad: {
+    flexDirection: 'row',
   }
 });

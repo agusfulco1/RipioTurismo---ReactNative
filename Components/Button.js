@@ -36,7 +36,7 @@ export default function Button(props) {
             <View style={styles.container}>
             <Animated.View style={[styles.button, {transform: [{scale}]}]}>
                 <TouchableOpacity onPress={props.onPress} onPressIn={onPressIn} onPressOut={onPressOut} style={styles.botonContainer}>
-                    <Text style={styles.textoBoton}>{props.title}</Text>
+                    <Text style={styles.textoBoton} adjustsFontSizeToFit={true}>{props.title}</Text>
                 </TouchableOpacity>
             </Animated.View>
             </View>
@@ -53,21 +53,21 @@ const styles = StyleSheet.create({
         backgroundColor: "#1573FF",
         borderRadius: 50,
         padding: 10,
-        marginTop: 20,
+        marginTop: 40,
         outlineColor: "#1573FF",
         outlineStyle: "solid",
         outlineWidth: 2,
         outlineOffset: 3,
         width: 300,
+        justifyContent: "center",
         height: 60
     },
     textoBoton: {
         fontSize: 20,
         color: "#fff",
         fontWeight: "bold",
-        alignSelf: "center",
+        textAlign: 'center',
         fontFamily: "Fredoka_300Light",
-        justifyContent: "center"
     }
 })
 
