@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import LoginStack from "./LoginStack";
-import ItinerarioStack from "./HomeStack"
-import BotStack from "./BotStack";
+import Login from "./Login"
+import Itinerario from "./Itinerario"
+import Bot from "./Bot";
 const Tab = createBottomTabNavigator() 
 
 const homeName = "Home";
@@ -33,9 +33,9 @@ export function TabNavigator() {
                 labelStyle: { paddingBottom: 10, fontSize: 10 },
                 style: { padding: 10, height: 70}
             }}>
-            <Tab.Screen name="Login" component={LoginStack} />
-            <Tab.Screen name={homeName} component={ItinerarioStack} />
-            <Tab.Screen name={chatName} component={BotStack} />
+            <Tab.Screen name="login" component={Login}/>
+            <Tab.Screen name={homeName} component={Itinerario} />
+            <Tab.Screen name={chatName} component={Bot} />
         </Tab.Navigator>
     );
 }
