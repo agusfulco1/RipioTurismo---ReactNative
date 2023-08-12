@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { TabNavigator } from './Screens/TabNavigator';
+import { TabNavigator } from './src/navigation/TabNavigator';
 
 
 
