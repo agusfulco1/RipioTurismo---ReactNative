@@ -47,7 +47,7 @@ export default function Login(props) {
       <View style={styles.container}>
         <Input nombreLabel="Nombre Completo" text={textName} setText={onChangeTextName}></Input>
         <Input nombreLabel="N° Pasaporte" text={textNumber} setText={onChangeTextNumber}></Input>
-        { isLoading ? null : !validation ? <Text style={styles.texto}><MaterialCommunityIcons name="alert" size={24} color="red" />Error, el nombre o el numero de pasaporte no coinciden.</Text> :         <UserContext.Provider value={value}><Bot /></UserContext.Provider>}
+        { isLoading ? null : !validation ? <Text style={styles.texto}><MaterialCommunityIcons name="alert" size={24} color="red" />Error, el nombre o el numero de pasaporte no coinciden.</Text> :  null}
         <Button
           style={styles.boton}
           title='Iniciar Sesion'
