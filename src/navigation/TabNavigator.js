@@ -1,17 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Login from "../Screens/Login"
 import Itinerario from "../Screens/Itinerario"
 import Bot from "../Screens/Bot";
-import Stackk from "./Stack";
+import { UserContext } from '../Context/UserContext'
+
 const Tab = createBottomTabNavigator() 
 
 const homeName = "Home";
 const chatName = "Chat";
-export function TabNavigator() {
+export default function TabNavigator({route}) {
+    const {NumPasaporte} = route.params
     return (
+        <UserContext.Provider value={NumPasaporte}>
         <Tab.Navigator
-            initialRouteName='Login' 
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                 let iconName;
@@ -32,11 +33,12 @@ export function TabNavigator() {
                 activeTintColor: 'orange',
                 inactiveTintColor: 'orange',
                 labelStyle: { paddingBottom: 10, fontSize: 10 },
+                headerShown: false,
                 style: { padding: 10, height: 70}
             }}>
-            <Tab.Screen name="Login" component={Stackk}/>
-            <Tab.Screen name={homeName} component={Itinerario} />
-            <Tab.Screen name={chatName} component={Bot} />
+                <Tab.Screen initialParams={NumPasaporte} name={homeName} component={Itinerario} />
+                <Tab.Screen name={chatName} component={Bot} />
         </Tab.Navigator>
+        </UserContext.Provider>
     );
 }

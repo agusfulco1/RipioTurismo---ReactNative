@@ -5,7 +5,6 @@ import { Dimensions } from 'react-native';
 import axios from 'axios';
 import Button from "../Components/Button.js"
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import Bot from "./Bot";
 export const UserContext = React.createContext();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -16,7 +15,6 @@ export default function Login(props) {
     const [textName, onChangeTextName] = React.useState('');
     const [NumPasaporte, setNumPasaporte] = React.useState("")
     const [isLoading, setLoading] = React.useState(true)
-    const [value, setValue] = React.useState(0)
     const onPress = () => {
       setValidation(false);
       axios.get("http://localhost:3000/users")
@@ -27,9 +25,7 @@ export default function Login(props) {
       .finally(() => setLoading(false))
     }
     const validar = usuariosArr => {
-      console.log("hola")
         usuariosArr.forEach(element => {
-          console.log(element)
           if (element.NombreCompleto === textName && element.NumPasaporte === textNumber ) {
             setValidation(true)
             setNumPasaporte(element.NumPasaporte)
@@ -39,8 +35,7 @@ export default function Login(props) {
     React.useEffect( () => {
       if (validation) {
         setLoading(true)
-        setValue(NumPasaporte)
-        props.navigation.navigate('Home', {NumPasaporte: NumPasaporte})
+        props.navigation.navigate('mose', {NumPasaporte: NumPasaporte})
       }
     }, [isLoading])
     return (
@@ -53,7 +48,6 @@ export default function Login(props) {
           title='Iniciar Sesion'
           onPress={onPress}
         />
-
       </View>
     );
 }

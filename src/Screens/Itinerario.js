@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import axios from 'axios';
 import Separator from '../Components/Separator'
 import { Dimensions } from 'react-native';
+import { UserContext } from '../Context/UserContext';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-export default function Itinerario({route}) {
+export default function Itinerario() {
     const [actividades, setActividades] = React.useState()
     const [loading, setLoading] = React.useState(false)
-    const {NumPasaporte} = route.params
 
+    const NumPasaporte = useContext(UserContext)
     console.log(NumPasaporte)
+    
     React.useEffect(() => {
-      axios.get('http://localhost:3000/activities/' + NumPasaporte )
+      axios.get('http://localhost:3000/activities/' + NumPasaporte)
       .then(function (response) {
         setActividades(response.data)
-        console.log(response.data)
+        console.log(response)
       })
       .finally(() => setLoading(true))
     }, [])
@@ -39,12 +41,9 @@ export default function Itinerario({route}) {
                   <Separator></Separator>  
                 </View>
               </View>
-             
             );
-            
           })
         )} 
-  
       </View>
     );
 }
